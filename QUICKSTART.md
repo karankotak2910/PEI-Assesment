@@ -34,7 +34,9 @@ All paths use /mnt/pei base directory:
 Source:  /mnt/pei/source/{Customer.xlsx, Orders.json, Products.csv}
 
 Bronze:  /mnt/pei/bronze/{customers, products, orders}
+
 Silver:  /mnt/pei/silver/{customers_enriched, products_enriched, orders_enriched}
+
 Gold:    /mnt/pei/gold/{profit_by_year, profit_by_year_category, profit_by_customer, profit_by_customer_year}
 
 Project Contents

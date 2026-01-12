@@ -1,10 +1,8 @@
-PEI Assessment - Quick Start Guide
+PEI Assessment - 
 
 Extract and Setup
 
-1. Extract archive
-   tar -xzf pei_assessment.tar.gz
-   cd pei_assessment
+1. Extract source files - Orders, Customers, Products
 
 2. Data is located in mnt/pei/source/
    Customer.xlsx, Orders.json, Products.csv
@@ -40,10 +38,10 @@ Gold:    /mnt/pei/gold/{profit_by_year, profit_by_year_category, profit_by_custo
 
 Project Contents
 
-mnt/pei/source/        Your actual data files (793 customers, 9,994 orders, 1,862 products)
+mnt/pei/source/        Actual data files (793 customers, 9,994 orders, 1,862 products)
 schemas/               Schema definitions for Bronze/Silver/Gold layers
 src/                   Core transformation logic (TDD approach)
-tests/                 Comprehensive unit tests (19 test cases)
+tests/                 Unit tests 
 notebooks/             4 executable notebooks
 
 Key Features
@@ -56,8 +54,6 @@ Key Features
 - All PySpark transformations (no SQL in transformations)
 - SQL queries for final analysis
 - Simple /mnt/pei paths (no os.path)
-
-What Happens When You Run
 
 01_bronze_ingestion.py:
 - Loads Customer.xlsx, Orders.json, Products.csv using schemas

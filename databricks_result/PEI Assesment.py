@@ -682,7 +682,7 @@ def round_profit_to_2_decimals(df: DataFrame) -> DataFrame:
     """
     Round profit to 2 decimal places as per requirement.
     
-    CRITICAL REQUIREMENT: Profit must be rounded to exactly 2 decimal places.
+    Profit must be rounded to exactly 2 decimal places.
     Casts to Decimal(10,2) for precision.
     
     Args:

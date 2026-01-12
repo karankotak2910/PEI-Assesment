@@ -51,7 +51,7 @@ Key Features
 
 - TDD approach with comprehensive tests
 - Schema-driven development with explicit schema usage
-- Profit rounded to 2 decimal places (CRITICAL requirement)
+- Profit rounded to 2 decimal places
 - Customer name and country in enriched orders
 - Product category and sub-category in enriched orders
 - All PySpark transformations (no SQL in transformations)

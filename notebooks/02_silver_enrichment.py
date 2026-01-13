@@ -4,8 +4,6 @@ Load from Bronze schema, enrich, and MERGE into Silver schema in Unity Catalog
 """
 
 import sys
-sys.path.insert(0, '.')
-
 from src.data_loader import (
     get_spark_session, load_bronze_table,
     merge_silver_customers, merge_silver_products, merge_silver_orders

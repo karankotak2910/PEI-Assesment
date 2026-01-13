@@ -4,8 +4,6 @@ Load Customer.xlsx, Orders.json, Products.csv and save to Unity Catalog Bronze s
 """
 
 import sys
-sys.path.insert(0, '.')
-
 from src.data_loader import get_spark_session, load_customer_data, load_product_data, load_order_data, save_bronze_table
 from src.data_quality import validate_schema
 from schemas.bronze_schema import CUSTOMER_BRONZE, PRODUCT_BRONZE, ORDER_BRONZE

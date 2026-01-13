@@ -4,8 +4,6 @@ Load from Silver schema, aggregate, and save to Gold schema in Unity Catalog
 """
 
 import sys
-sys.path.insert(0, '.')
-
 from src.data_loader import get_spark_session, load_silver_table, save_gold_table
 from src.transformations import create_profit_aggregate
 from src.data_quality import validate_schema

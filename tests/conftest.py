@@ -10,7 +10,11 @@ from datetime import date
 def spark():
     spark = SparkSession.builder \
         .appName("PEI_Testing") \
+        .master("local[2]") \
+        .config("spark.sql.shuffle.partitions", "2") \
         .getOrCreate()
+    
+    spark.sparkContext.setLogLevel("ERROR")
     yield spark
     spark.stop()
 

@@ -8,13 +8,7 @@ from datetime import date
 
 @pytest.fixture(scope="session")
 def spark():
-    spark = SparkSession.builder \
-        .appName("PEI_Testing") \
-        .master("local[2]") \
-        .config("spark.sql.shuffle.partitions", "2") \
-        .getOrCreate()
-    
-    spark.sparkContext.setLogLevel("ERROR")
+    spark = SparkSession.builder.getOrCreate()
     yield spark
     spark.stop()
 

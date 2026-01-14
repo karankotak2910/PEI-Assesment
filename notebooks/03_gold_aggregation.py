@@ -4,10 +4,10 @@ Load from Silver schema, aggregate, and save to Gold schema in Unity Catalog
 """
 
 import sys
-sys.path.insert(0, '.')
-
 from src.data_loader import get_spark_session, load_silver_table, save_gold_table
 from src.transformations import create_profit_aggregate
+from src.data_quality import validate_schema
+from schemas.gold_schema import PROFIT_AGGREGATE
 
 
 def main():
@@ -24,6 +24,12 @@ def main():
         profit_aggregate = create_profit_aggregate(orders_enriched)
         
         print(f"  Created {profit_aggregate.count():,} aggregate records")
+        
+        # Validate aggregate schema
+        print("\n  Validating schema against PROFIT_AGGREGATE...")
+        agg_cols = [field.name for field in PROFIT_AGGREGATE.fields]
+        validate_schema(profit_aggregate, agg_cols, "gold.profit_aggregate")
+        print("  Schema validated against PROFIT_AGGREGATE")
         
         print("\nSaving to Gold schema in Unity Catalog...")
         save_gold_table(spark, profit_aggregate, "profit_aggregate")

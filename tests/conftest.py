@@ -8,9 +8,7 @@ from datetime import date
 
 @pytest.fixture(scope="session")
 def spark():
-    spark = SparkSession.builder \
-        .appName("PEI_Testing") \
-        .getOrCreate()
+    spark = SparkSession.builder.getOrCreate()
     yield spark
     spark.stop()
 

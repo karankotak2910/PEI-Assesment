@@ -84,19 +84,16 @@ pei_assessment/
 │   └── data_quality.py       # Comprehensive DQ validation
 ├── tests/                    # Unit tests (pytest)
 │   ├── conftest.py           # Test fixtures and shared setup
-│   ├── test_transformations.py  # Transformation logic tests (75+ tests)
-│   └── test_data_quality.py     # DQ validation tests (75+ tests)
+│   ├── test_integration.py   # Integration logic tests
+│   ├── test_merge_operations.py  # Merge logic tests
+|   ├── test_transformations.py  # Transformation logic tests
+│   └── test_data_quality.py     # DQ validation tests
 ├── notebooks/                # Pipeline execution notebooks
 │   ├── 01_bronze_ingestion.py   # Load source → Bronze tables
 │   ├── 02_silver_enrichment.py  # Bronze → Silver enrichment
 │   ├── 03_gold_aggregation.py   # Silver → Gold aggregates
 │   └── 04_sql_analytics.py      # SQL business intelligence queries
-├── data/                     # Local Delta Lake storage (if not using Unity Catalog)
-│   ├── bronze/
-│   ├── silver/
-│   └── gold/
-├── pytest.ini                # Pytest configuration with custom markers
-├── requirements.txt          # Python dependencies
+│   └── 05_data_quality_validation.py      # DQ functions
 ├── QUICKSTART.md            # Quick start guide
 └── TESTING.md               # Testing guide
 ```
@@ -130,18 +127,18 @@ Business-level aggregates for analytics and reporting.
 
 ## Assessment Requirements Mapping
 
-### Task 1: Create raw tables for each source dataset ✅
-- **Implementation:** `01_bronze_ingestion.py`
+### Task 1: Create raw tables for each source dataset 
+- Implementation: `01_bronze_ingestion.py`
 - **Output:** `workspace.bronze.{customers, products, orders}`
 - **Function:** `save_bronze_table()`
 
-### Task 2: Create enriched table for customers and products ✅
+### Task 2: Create enriched table for customers and products 
 - **Implementation:** `src/transformations.py` → `enrich_customer()`, `enrich_product()`
 - **Output:** `workspace.silver.{customers_enriched, products_enriched}`
-- **Customer Enrichments:** Email domain extraction, email validation
+- **CustomerEnrichments:** Email domain extraction, email validation
 - **Product Enrichments:** Column standardization
 
-### Task 3: Create enriched order table with ✅
+### Task 3: Create enriched order table with 
 - Order information
 - **Profit rounded to 2 decimal places (CRITICAL)**
 - Customer name and country
@@ -151,7 +148,7 @@ Business-level aggregates for analytics and reporting.
 **Output:** `workspace.silver.orders_enriched`  
 **Key Function:** `round_profit_to_2_decimals()` using `Decimal(10,2)`
 
-### Task 4: Create aggregate table showing profit by ✅
+### Task 4: Create aggregate table showing profit by 
 - Year
 - Product Category
 - Product Sub Category
@@ -160,7 +157,7 @@ Business-level aggregates for analytics and reporting.
 **Implementation:** `src/transformations.py` → `create_profit_aggregate()`  
 **Output:** `workspace.gold.profit_aggregate` (single table with all dimensions)
 
-### Task 5: Using SQL output the following aggregates ✅
+### Task 5: Using SQL output the following aggregates 
 - Profit by Year
 - Profit by Year + Product Category
 - Profit by Customer
